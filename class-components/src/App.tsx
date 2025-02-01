@@ -1,11 +1,15 @@
+import React from 'react';
 import './App.css';
+import Header from './class-components/Header/Header';
 
-function App() {
-  return (
-    <>
-      <h1 style={{ color: 'black', fontSize: '36px' }}>Hello world!</h1>
-    </>
-  );
+class App extends React.Component {
+  render(): React.ReactNode {
+    return (
+      <>
+        <Header />
+      </>
+    );
+  }
 }
 
 export default App;
