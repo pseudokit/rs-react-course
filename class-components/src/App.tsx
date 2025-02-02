@@ -53,31 +53,4 @@ class App extends React.Component<AppState> {
 }
 
 export default App;
-/*characters: [
-  {
-    birth: 'YT during the ,Noontide of Valinor',
-    death: 'FA 455',
-    gender: 'Male',
-    hair: 'Golden',
-    height: null,
-    name: 'Aegnor',
-    race: 'Elf',
-    realm: null,
-    spouse: 'Loved ,Andreth but remained unmarried',
-    wikiUrl: 'http://lotr.wikia.com//wiki/Aegnor',
-    _id: '5cd99d4bde30eff6ebccfbc1',
-  },
-  {
-    birth: 'YT during the ,Noontide of Valinor',
-    death: 'FA 455',
-    gender: 'Male',
-    hair: 'Golden',
-    height: null,
-    name: 'Alex',
-    race: 'Elf',
-    realm: null,
-    spouse: 'Loved ,Andreth but remained unmarried',
-    wikiUrl: 'http://lotr.wikia.com//wiki/Aegnor',
-    _id: '5cd99d4bde30eff6ebccfbc1',
-  },
-],*/
+
