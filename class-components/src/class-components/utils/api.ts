@@ -3,22 +3,25 @@ import { ICharacter, IResponse } from './types';
 
 export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
 
-export const apiKeyOneApi = '9SMfjy4vJ7dazwPaxqQ-';
-interface IData {
+//export const apiKeyOneApi = 'iiTstM0mt75U53pczkha';
+//b6e1nvsD0GNASWX-IMmV
+//IEUYNLIvFe88o3JqtT0R
+export const apiKeyOneApi = 'b6e1nvsD0GNASWX-IMmV!';
+/*interface IData {
   docs: Array<ICharacter>;
   limit: string;
   offset: string;
   page: string;
   pages: string;
   total: string;
-}
+}*/
 
 export const getWithAxiosCharacters = async (
   search: string
 ): Promise<ICharacter[]> => {
   const response = await axios.get(
     //`${baseUrlOneApi}character?name=/${search}/i&limit=${10}&page=2`,
-    `${baseUrlOneApi}character?name=/${search}/i&limit=${10}&page=1`,
+    `${baseUrlOneApi}character?name=/${search}/i&limit=${20}&page=1`,
     {
       headers: { Authorization: `Bearer ${apiKeyOneApi}` },
     }
@@ -39,6 +42,7 @@ export const getCharacters = async (search: string): Promise<IResponse> => {
   const data = await response.json();
   return data;
 };
+
 /*characters: [
   {
     birth: 'YT during the ,Noontide of Valinor',

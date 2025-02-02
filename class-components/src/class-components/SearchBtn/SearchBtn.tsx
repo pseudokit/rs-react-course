@@ -4,29 +4,24 @@ import { getWithAxiosCharacters } from '../utils/api';
 import { ICharacter } from '../utils/types';
 
 interface SearchBtnProps {
-  characters: number;
+  characters: Array<ICharacter>;
   updateFunc: (input: Array<ICharacter>) => void;
   updateLoading: () => void;
   searchQuery: string;
+  setErrorPage: (isError: boolean) => void;
+  apiCall: () => void;
 }
 
 class SearchBtn extends React.Component<SearchBtnProps> {
   render(): React.ReactNode {
     return (
       <>
-        <button className={styles.SearchBtn} onClick={this.apiCall}>
+        <button className={styles.SearchBtn} onClick={this.props.apiCall}>
           Поиск . . .
         </button>
       </>
     );
   }
-
-  apiCall = async () => {
-    this.props.updateLoading();
-    const dataJson = await getWithAxiosCharacters(this.props.searchQuery);
-    this.props.updateLoading();
-    this.props.updateFunc(dataJson);
-  };
 }
 
 export default SearchBtn;

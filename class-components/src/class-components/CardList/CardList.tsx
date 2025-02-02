@@ -1,6 +1,7 @@
 import React from 'react';
 import './CardList.module.scss';
-import ICard, { ICharacter } from '../utils/types';
+import { ICharacter } from '../utils/types';
+import styles from './CardList.module.scss';
 import Card from '../Card/Card';
 
 interface CardListProps {
@@ -8,16 +9,13 @@ interface CardListProps {
 }
 
 class CardList extends React.Component<CardListProps> {
-  //arr: Array<ApiDataProps> = [{ id: 1, name: 'Alex' }];
-  arr: Array<string> = ['a', 'cc', 'b3'];
-
   render(): React.ReactNode {
     return (
-      <>
+      <div className={styles.CardList}>
         {this.props.cardList.map((component, index) => (
           <Card card={component} key={index} />
         ))}
-      </>
+      </div>
     );
   }
 }

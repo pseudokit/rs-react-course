@@ -1,0 +1,18 @@
+.CardList {
+    /*align-items: center;
+    background: rgb(180, 191, 180);
+    color: #fff;
+    //display: flex;
+    height: 60px;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 50px;
+    width: 1200px;
+    
+    gap: 55px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}

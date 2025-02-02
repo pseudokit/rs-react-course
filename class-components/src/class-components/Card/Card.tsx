@@ -9,11 +9,9 @@ interface CardProps {
 class Card extends React.Component<CardProps> {
   render(): React.ReactNode {
     return (
-      <>
-        <div className={styles.Card}>
-          Card!!! {this.props.card.name} {this.props.card._id}
-        </div>
-      </>
+      <div className={styles.Card}>
+        {this.props.card.name} {this.props.card._id}
+      </div>
     );
   }
 }

@@ -7,7 +7,8 @@ import { ICharacter } from './class-components/utils/types';
 
 type AppState = {
   characters: Array<number>;
-  isLoading: boolean,
+  isLoading: boolean;
+  isError: boolean;
   mess: string;
 };
 
@@ -17,6 +18,7 @@ class App extends React.Component<AppState> {
     this.state = {
       mess: String,
       isLoading: false,
+      isError: false,
       characters: [],
     };
   }
@@ -27,15 +29,23 @@ class App extends React.Component<AppState> {
           characters={this.state.characters}
           updateFunc={this.updateCharactersFunc}
           updateLoading={this.switchLoadingState}
+          setErrorPage={this.setErrorPage}
         />
         <Results
           characters={this.state.characters}
           isLoading={this.state.isLoading}
+          isError={this.state.isError}
           updateFunc={this.updateCharactersFunc}
         />
       </>
     );
   }
+  setErrorPage = (isError: boolean) => {
+    this.setState((state: AppState) => ({
+      ...state,
+      isError: isError,
+    }));
+  };
 
   updateCharactersFunc = (charactersFromApi: Array<ICharacter>) => {
     console.log(this.state);
@@ -53,4 +63,3 @@ class App extends React.Component<AppState> {
 }
 
 export default App;
-
