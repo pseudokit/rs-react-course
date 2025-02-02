@@ -3,7 +3,11 @@ import styles from './Loader.module.scss';
 
 class Loader extends React.Component {
   render(): React.ReactNode {
-    return <div className={styles.Loader}>is loading...</div>;
+    return (
+      <div className={styles.Loader__container}>
+        <div className={styles.Loader}></div>
+      </div>
+    );
   }
 }
 

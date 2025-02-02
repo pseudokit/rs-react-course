@@ -63,19 +63,29 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     }));
   };
   apiCall = async () => {
-    await this.apiCallQuery(this.state.searchQuery);
-  };
-  apiCallQuery = async (query: string) => {
-    this.props.updateLoading();
-    const dataJson = await getWithAxiosCharacters(query);
-    if (!dataJson.length) {
+    try {
+      await this.apiCallQuery(this.state.searchQuery);
+    } catch {
       this.props.setErrorPage(true);
-    } else {
-      this.props.setErrorPage(false);
+      this.props.updateLoading();
     }
+  };
 
-    this.props.updateLoading();
-    this.props.updateFunc(dataJson);
+  apiCallQuery = async (query: string) => {
+    try {
+      this.props.updateLoading();
+      const dataJson = await getWithAxiosCharacters(query);
+      if (!dataJson.length) {
+        this.props.setErrorPage(true);
+      } else {
+        this.props.setErrorPage(false);
+      }
+      this.props.updateLoading();
+      this.props.updateFunc(dataJson);
+    } catch {
+      this.props.setErrorPage(true);
+      this.props.updateLoading();
+    }
   };
 
   setSearchInput = (input: string) => {
@@ -86,9 +96,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     localStorage.setItem('search', input);
   };
   onChangeSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     this.setSearchInput(e.target.value);
-    console.log(this.state);
   };
 }
 

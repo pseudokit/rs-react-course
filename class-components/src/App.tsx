@@ -48,7 +48,6 @@ class App extends React.Component<AppState> {
   };
 
   updateCharactersFunc = (charactersFromApi: Array<ICharacter>) => {
-    console.log(this.state);
     this.setState((state: AppState) => ({
       ...state,
       characters: [...charactersFromApi],

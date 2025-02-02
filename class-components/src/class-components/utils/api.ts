@@ -6,7 +6,7 @@ export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
 //export const apiKeyOneApi = 'iiTstM0mt75U53pczkha';
 //b6e1nvsD0GNASWX-IMmV
 //IEUYNLIvFe88o3JqtT0R
-export const apiKeyOneApi = 'b6e1nvsD0GNASWX-IMmV!';
+export const apiKeyOneApi = 'b6e1nvsD0GNASWX-IMmV';
 /*interface IData {
   docs: Array<ICharacter>;
   limit: string;
