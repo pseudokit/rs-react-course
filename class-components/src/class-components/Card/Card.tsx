@@ -10,7 +10,8 @@ class Card extends React.Component<CardProps> {
   render(): React.ReactNode {
     return (
       <div className={styles.Card}>
-        {this.props.card.name} {this.props.card._id}
+        <div>Name: {this.props.card.name} </div>
+        <div>Birth: {this.props.card.birth}</div>
       </div>
     );
   }

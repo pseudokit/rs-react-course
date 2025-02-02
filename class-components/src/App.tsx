@@ -16,7 +16,6 @@ class App extends React.Component<AppState> {
   constructor() {
     super();
     this.state = {
-      mess: String,
       isLoading: false,
       isError: false,
       characters: [],

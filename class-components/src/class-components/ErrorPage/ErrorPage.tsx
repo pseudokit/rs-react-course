@@ -3,7 +3,12 @@ import styles from './ErrorPage.module.scss';
 
 class ErrorPage extends React.Component {
   render(): React.ReactNode {
-    return <div>ErrorPage...</div>;
+    return (
+      <div className={styles.Error__container}>
+        <h1>Error page</h1>
+        <p>Some went wrong...</p>
+      </div>
+    );
   }
 }
 

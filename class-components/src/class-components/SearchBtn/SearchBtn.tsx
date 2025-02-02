@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styles from './SearchBtn.module.scss';
-import { getWithAxiosCharacters } from '../utils/api';
 import { ICharacter } from '../utils/types';
 
 interface SearchBtnProps {

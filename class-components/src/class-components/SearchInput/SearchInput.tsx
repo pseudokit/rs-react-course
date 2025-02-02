@@ -20,14 +20,5 @@ class SearchInput extends React.Component<SearchInputProps> {
       </>
     );
   }
-
-  /*setSearchInput = (input: string) => {
-    this.setState((state) => ({
-      ...state,
-      searchQuery: input,
-    }));
-    localStorage.setItem('search', input);
-  };*/
 }
-
 export default SearchInput;

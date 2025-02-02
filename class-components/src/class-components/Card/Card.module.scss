@@ -5,13 +5,11 @@
   overflow: hidden;
   transition: transform 0.3s;
   width: 300px;
-
-  //margin: 100px;
+  height: 60px;
   color: black;
 }
 
 .Card:hover {
-    transform: translateY(-10px);
-    cursor: pointer;
+  transform: translateY(-10px);
+  cursor: pointer;
 }
-  
