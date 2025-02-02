@@ -1,20 +1,3 @@
-export interface ICard {
-  id: number;
-  name: string;
-  year: number;
-  url?: string;
-}
-
-export interface IPersonCard {
-  id: string;
-  firstName: string;
-  surName: string;
-  birthDay: string;
-  fileUrl: string;
-  country: string;
-  sex: string;
-}
-
 export interface ICharacter {
   birth: string;
   death: string;
