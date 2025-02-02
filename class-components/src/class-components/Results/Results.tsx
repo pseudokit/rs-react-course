@@ -1,21 +1,24 @@
 import * as React from 'react';
 import styles from './Results.module.scss';
-import { AppCharacterState, ICharacter } from '../utils/types';
+import { ICharacter } from '../utils/types';
 import CardList from '../CardList/CardList';
+import Loader from '../Loader/Loader';
 
 interface ResultsProps {
   characters: Array<ICharacter>;
+  isLoading: boolean;
   updateFunc: (input: Array<ICharacter>) => void;
 }
 
 class Results extends React.Component<ResultsProps> {
   render(): React.ReactNode {
     return (
-      <div className={styles.Results}>
-        <CardList cardList={this.props.characters} />
-        <button onClick={this.clickMe}>
-          Clicke me {this.props.mess} {this.props.characters.length}
-        </button>
+      <div>
+        {this.props.isLoading ? (
+          <Loader />
+        ) : (
+          <CardList cardList={this.props.characters} />
+        )}
       </div>
     );
   }

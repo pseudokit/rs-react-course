@@ -3,7 +3,7 @@ import { ICharacter, IResponse } from './types';
 
 export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
 
-export const apiKeyOneApi = 'YOU_API';
+export const apiKeyOneApi = '9SMfjy4vJ7dazwPaxqQ-';
 interface IData {
   docs: Array<ICharacter>;
   limit: string;

@@ -7,7 +7,9 @@ import { ICharacter } from '../utils/types';
 interface HeaderProps {
   characters: number;
   updateFunc: (input: Array<ICharacter>) => void;
+  updateLoading: () => void;
 }
+
 class Header extends React.Component<HeaderProps> {
   render(): React.ReactNode {
     return (
@@ -16,6 +18,7 @@ class Header extends React.Component<HeaderProps> {
         <SearchBtn
           characters={this.props.characters}
           updateFunc={this.props.updateFunc}
+          updateLoading={this.props.updateLoading}
         />
       </div>
     );

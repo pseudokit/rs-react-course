@@ -6,6 +6,7 @@ import { ICharacter } from '../utils/types';
 interface SearchBtnProps {
   characters: number;
   updateFunc: (input: Array<ICharacter>) => void;
+  updateLoading: () => void;
 }
 
 class SearchBtn extends React.Component<SearchBtnProps> {
@@ -18,10 +19,12 @@ class SearchBtn extends React.Component<SearchBtnProps> {
       </>
     );
   }
+
   apiCall = async () => {
-    console.log('api called');
+    this.props.updateLoading();
     const dataJson = await getWithAxiosCharacters('a');
-    console.log(dataJson);
+    this.props.updateLoading();
+    //console.log(dataJson);
     this.props.updateFunc(dataJson);
   };
 }
