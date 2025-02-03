@@ -6,15 +6,14 @@ import Results from './class-components/Results/Results';
 import { ICharacter } from './class-components/utils/types';
 
 type AppState = {
-  characters: Array<number>;
+  characters: Array<ICharacter>;
   isLoading: boolean;
   isError: boolean;
-  mess: string;
 };
 
-class App extends React.Component<AppState> {
-  constructor() {
-    super();
+class App extends React.Component<object, AppState> {
+  constructor(props: object) {
+    super(props);
     this.state = {
       isLoading: false,
       isError: false,

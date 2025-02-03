@@ -12,19 +12,16 @@ interface HeaderProps {
   updateLoading: () => void;
 }
 const BASE_SEARCH_QUERY = 'a';
+
 type HeaderState = {
   searchQuery: string;
 };
 
 class Header extends React.Component<HeaderProps, HeaderState> {
-  constructor() {
-    super();
-    this.state = {
-      searchQuery: '',
-    };
-    this.apiCall = this.apiCall.bind(this);
-    this.setSearchValue = this.setSearchValue.bind(this);
-  }
+  state: HeaderState = {
+    searchQuery: '',
+  };
+
   async componentDidMount(): Promise<void> {
     const searchValue = localStorage.getItem('search');
     if (!searchValue) {
