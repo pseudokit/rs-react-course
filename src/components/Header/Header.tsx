@@ -1,100 +1,61 @@
-import * as React from "react";
-import SearchInput from "../SearchInput/SearchInput";
-import SearchBtn from "../SearchBtn/SearchBtn";
+import React, { useState, ChangeEvent } from "react";
+
 import styles from "./Header.module.scss";
-import { ICharacter } from "../utils/types";
 import { getWithAxiosCharacters } from "../utils/api";
+import { ICharacter } from "../utils/types";
 
 interface HeaderProps {
-    characters: Array<ICharacter>;
     setErrorPage: (isError: boolean) => void;
     updateFunc: (input: Array<ICharacter>) => void;
     updateLoading: () => void;
 }
-const BASE_SEARCH_QUERY = "a";
 
-type HeaderState = {
-    searchQuery: string;
-};
-
-class Header extends React.Component<HeaderProps, HeaderState> {
-    state: HeaderState = {
-        searchQuery: "",
-    };
-
-    async componentDidMount(): Promise<void> {
-        const searchValue = localStorage.getItem("search");
-        if (!searchValue) {
-            localStorage.setItem("search", BASE_SEARCH_QUERY);
-            this.setSearchValue(BASE_SEARCH_QUERY);
-            await this.apiCallQuery(BASE_SEARCH_QUERY);
-        } else {
-            this.setSearchValue(searchValue);
-            await this.apiCallQuery(searchValue);
-        }
-    }
-
-    render(): React.ReactNode {
-        return (
-            <div className={styles.Header}>
-                <SearchInput
-                    onChangeSearchQuery={this.onChangeSearchQuery}
-                    searchValue={this.state.searchQuery}
-                />
-                <SearchBtn
-                    characters={this.props.characters}
-                    updateFunc={this.props.updateFunc}
-                    updateLoading={this.props.updateLoading}
-                    searchQuery={this.state.searchQuery}
-                    setErrorPage={this.props.setErrorPage}
-                    apiCall={this.apiCall}
-                />
-            </div>
-        );
-    }
-
-    setSearchValue = (query: string) => {
-        this.setState((state) => ({
-            ...state,
-            searchQuery: query,
-        }));
-    };
-    apiCall = async () => {
+const Header: React.FC<HeaderProps> = ({ setErrorPage, updateFunc, updateLoading }) => {
+    const [searchQuery, setSearchQuery] = useState<string>("a");
+    const apiCall = async () => {
         try {
-            await this.apiCallQuery(this.state.searchQuery);
+            await apiCallQuery(searchQuery);
         } catch {
-            this.props.setErrorPage(true);
-            this.props.updateLoading();
+            setErrorPage(true);
+            updateLoading();
         }
     };
-
-    apiCallQuery = async (query: string) => {
+    const apiCallQuery = async (query: string) => {
         try {
-            this.props.updateLoading();
+            updateLoading();
             const dataJson = await getWithAxiosCharacters(query);
             if (!dataJson.length) {
-                this.props.setErrorPage(true);
+                setErrorPage(true);
             } else {
-                this.props.setErrorPage(false);
+                setErrorPage(false);
             }
-            this.props.updateLoading();
-            this.props.updateFunc(dataJson);
+            updateLoading();
+            updateFunc(dataJson);
         } catch {
-            this.props.setErrorPage(true);
-            this.props.updateLoading();
+            setErrorPage(true);
+            updateLoading();
         }
     };
-
-    setSearchInput = (input: string) => {
-        this.setState((state) => ({
-            ...state,
-            searchQuery: input,
-        }));
-        localStorage.setItem("search", input);
-    };
-    onChangeSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setSearchInput(e.target.value);
-    };
-}
+    return (
+        <div className={styles.Header}>
+            <>
+                {" "}
+                <input
+                    type="text"
+                    className={styles.Search}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                        setSearchQuery(e.target.value);
+                    }}
+                    value={searchQuery}
+                    placeholder="Поиск..."
+                />
+                <button className={styles.SearchBtn} onClick={apiCall}>
+                    {" "}
+                    XX Поиск . . .
+                </button>
+            </>
+        </div>
+    );
+};
 
 export default Header;

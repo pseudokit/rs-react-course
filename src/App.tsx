@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
+
 import Results from "./components/Results/Results";
 
 import { ICharacter } from "./components/utils/types";
+import Header from "./components/Header/Header";
 
 type AppState = {
     characters: Array<ICharacter>;
@@ -24,7 +25,6 @@ class App extends React.Component<object, AppState> {
         return (
             <>
                 <Header
-                    characters={this.state.characters}
                     updateFunc={this.updateCharactersFunc}
                     updateLoading={this.switchLoadingState}
                     setErrorPage={this.setErrorPage}
