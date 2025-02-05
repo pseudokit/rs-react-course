@@ -1,0 +1,15 @@
+.Results {
+    align-items: center;
+    background: rgb(234, 249, 234);
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 50px;
+    width: 1200px;
+    justify-content: flex-start;
+    gap: 55px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 80vh;
+}
