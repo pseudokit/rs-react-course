@@ -1,14 +1,11 @@
 import * as React from "react";
 import styles from "./Loader.module.scss";
 
-class Loader extends React.Component {
-    render(): React.ReactNode {
-        return (
-            <div className={styles.Loader__container}>
-                <div className={styles.Loader}></div>
-            </div>
-        );
-    }
-}
-
+const Loader: React.FC = () => {
+    return (
+        <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+        </div>
+    );
+};
 export default Loader;

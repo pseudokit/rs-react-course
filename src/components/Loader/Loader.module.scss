@@ -1,16 +1,15 @@
-.Loader__container {
+.loaderContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 1300px;
     height: 80vh;
-    //background-color: #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
     margin: 0 auto;
 }
 
-.Loader {
+.loader {
     border: 4px solid rgba(0, 0, 0, 0.1);
     width: 72px;
     height: 72px;

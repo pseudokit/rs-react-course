@@ -1,62 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import Results from "./components/Results/Results";
 
 import { ICharacter } from "./components/utils/types";
-import Header from "./components/Header/Header";
+import HeaderFunc from "./components/Header/Header";
+import { getWithAxiosCharacters } from "./components/utils/api";
 
-type AppState = {
-    characters: Array<ICharacter>;
-    isLoading: boolean;
-    isError: boolean;
+const App: React.FC = () => {
+    const [characters, setCharacters] = useState<ICharacter[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+
+    const apiCallQuery = async (query: string) => {
+        setIsLoading(true);
+        try {
+            const dataJson = await getWithAxiosCharacters(query);
+            if (!dataJson.length) {
+                setIsError(true);
+            } else {
+                setIsError(false);
+            }
+            setIsLoading(true);
+            setCharacters(dataJson);
+        } catch {
+            setIsError(true);
+        }
+        setIsLoading(false);
+    };
+
+    return (
+        <>
+            <HeaderFunc searchHandler={apiCallQuery} initialQuery={"a"} />
+            <Results characters={characters} isLoading={isLoading} isError={isError} />
+        </>
+    );
 };
-
-class App extends React.Component<object, AppState> {
-    constructor(props: object) {
-        super(props);
-        this.state = {
-            isLoading: false,
-            isError: false,
-            characters: [],
-        };
-    }
-    render(): React.ReactNode {
-        return (
-            <>
-                <Header
-                    updateFunc={this.updateCharactersFunc}
-                    updateLoading={this.switchLoadingState}
-                    setErrorPage={this.setErrorPage}
-                />
-                <Results
-                    characters={this.state.characters}
-                    isLoading={this.state.isLoading}
-                    isError={this.state.isError}
-                    updateFunc={this.updateCharactersFunc}
-                />
-            </>
-        );
-    }
-    setErrorPage = (isError: boolean) => {
-        this.setState((state: AppState) => ({
-            ...state,
-            isError: isError,
-        }));
-    };
-
-    updateCharactersFunc = (charactersFromApi: Array<ICharacter>) => {
-        this.setState((state: AppState) => ({
-            ...state,
-            characters: [...charactersFromApi],
-        }));
-    };
-    switchLoadingState = () => {
-        this.setState((state: AppState) => ({
-            ...state,
-            isLoading: !state.isLoading,
-        }));
-    };
-}
 
 export default App;

@@ -3,29 +3,32 @@ import styles from "./Results.module.scss";
 import { ICharacter } from "../utils/types";
 import CardList from "../CardList/CardList";
 import Loader from "../Loader/Loader";
-import ErrorPage from "../ErrorPage/ErrorPage";
 
 interface ResultsProps {
     characters: Array<ICharacter>;
     isLoading: boolean;
     isError: boolean;
-    updateFunc: (input: Array<ICharacter>) => void;
 }
 
-class Results extends React.Component<ResultsProps> {
-    render(): React.ReactNode {
+const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError }) => {
+    if (isLoading) {
+        return <Loader />;
+    }
+    if (isError) {
         return (
-            <div className={styles.Results}>
-                {this.props.isLoading ? (
-                    <Loader />
-                ) : this.props.isError ? (
-                    <ErrorPage />
-                ) : (
-                    <CardList cardList={this.props.characters} />
-                )}
+            <div className={styles.results}>
+                <div className={styles.errorContainer}>
+                    <h1>Error page</h1>
+                    <p>Some went wrong...</p>
+                </div>
             </div>
         );
     }
-}
+    return (
+        <div className={styles.results}>
+            <CardList cardList={characters} />
+        </div>
+    );
+};
 
 export default Results;

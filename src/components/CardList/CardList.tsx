@@ -8,16 +8,14 @@ interface CardListProps {
     cardList: Array<ICharacter>;
 }
 
-class CardList extends React.Component<CardListProps> {
-    render(): React.ReactNode {
-        return (
-            <div className={styles.CardList}>
-                {this.props.cardList.map((component, index) => (
-                    <Card card={component} key={index} />
-                ))}
-            </div>
-        );
-    }
-}
+const CardList: React.FC<CardListProps> = ({ cardList }) => {
+    return (
+        <div className={styles.cardList}>
+            {cardList.map((component, index) => (
+                <Card card={component} key={index} />
+            ))}
+        </div>
+    );
+};
 
 export default CardList;

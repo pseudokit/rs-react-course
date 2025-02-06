@@ -1,4 +1,4 @@
-.Results {
+.results {
     align-items: center;
     background: rgb(234, 249, 234);
     color: #fff;
@@ -12,4 +12,21 @@
     gap: 55px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     min-height: 80vh;
+}
+
+.errorContainer {
+    text-align: center;
+    padding: 50px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.errorContainer h1 {
+    font-size: 72px;
+    margin-bottom: 20px;
+}
+
+.errorContainer p {
+    font-size: 36px;
+    margin-bottom: 30px;
 }
