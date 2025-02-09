@@ -12,12 +12,17 @@ const CardInfo: React.FC<CardInfoProps> = ({ character, onCloseHandler }) => {
         console.log(e);
         onCloseHandler();
     };
-
     return (
-        <div className={styles.cardInfo}>
-            <h3 className={styles.cardTitle}>Инфа по карточке id = {character._id}</h3>
+        <div className={styles.cardInfo} data-testid="testid-cardInfo">
+            <h3 data-testid="testid-cardInfoTitle" className={styles.cardTitle}>
+                Инфа по карточке id = {character._id}
+            </h3>
             <span>Name: {character.name}</span>
-            <div className={styles.closeBtn} onClick={onClickHandler}>
+            <div
+                className={styles.closeBtn}
+                onClick={onClickHandler}
+                data-testid="testid-cardInfoBtn"
+            >
                 Close
             </div>
         </div>

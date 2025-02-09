@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 import { LIMIT_PER_PAGE } from "../../const/const";
 import CardInfo from "../CardInfo/CardInfo";
 import { getCharacterById } from "../../utils/api";
-import { DEFAULT_CHARACTER } from "../../utils/localData";
+import { mockCharacterData } from "../../test/mockData";
 
 interface CardListProps {
     cardList: Array<ICharacter>;
@@ -15,17 +15,19 @@ interface CardListProps {
 
 const CardList: React.FC<CardListProps> = ({ cardList, offset }) => {
     const [isOpened, setIsOpened] = useState(false);
-    const [currentCharacter, setCurrentCharacter] = useState(DEFAULT_CHARACTER);
+    const [currentCharacter, setCurrentCharacter] = useState(mockCharacterData);
+    const [isLoading, setIsLoading] = useState(true);
     const handlerClick = (id: string) => {
         setIsOpened(true);
         getCharacterApi(id);
     };
     const getCharacterApi = async (id: string) => {
+        setIsLoading(true);
         const data = await getCharacterById(id);
-        console.log(data);
         if (data) {
             setCurrentCharacter(data[0]);
         }
+        setIsLoading(false);
     };
 
     const onCloseHandler = () => {
@@ -33,13 +35,21 @@ const CardList: React.FC<CardListProps> = ({ cardList, offset }) => {
     };
 
     return (
-        <div className={styles.cardList}>
+        <div className={styles.cardList} data-testid="testid-cardList">
             <div className={styles.cardList__container}>
                 {cardList.slice(offset, offset + LIMIT_PER_PAGE).map((component, index) => (
                     <Card card={component} key={index} handlerClickCard={handlerClick} />
                 ))}
             </div>
-            {isOpened && <CardInfo character={currentCharacter} onCloseHandler={onCloseHandler} />}
+            {isOpened ? (
+                isLoading ? (
+                    <h3>Loading...</h3>
+                ) : (
+                    <CardInfo character={currentCharacter} onCloseHandler={onCloseHandler} />
+                )
+            ) : (
+                ""
+            )}
         </div>
     );
 };

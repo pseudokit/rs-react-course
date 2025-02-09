@@ -6,7 +6,6 @@ import Results from "./components/Results/Results";
 import { ICharacter } from "./utils/types";
 import { getWithAxiosCharacters } from "./utils/api";
 import Pagination from "./components/Pagination/Pagination";
-import { useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import { LIMIT_PER_PAGE } from "./const/const";
 
@@ -21,10 +20,8 @@ const App: React.FC = () => {
 
     const apiCallQuery = async (query: string) => {
         setIsLoading(true);
-        console.log("Here");
         try {
             const dataJson = await getWithAxiosCharacters(query);
-            console.log(dataJson);
             if (!dataJson.length) {
                 setIsError(true);
             } else {
@@ -49,7 +46,6 @@ const App: React.FC = () => {
     }, [currentPage, navigate, offset]);
 
     const onChangePageHandler = (currentPage: number) => {
-        console.log("clicked");
         setCurrentPage(currentPage);
     };
 

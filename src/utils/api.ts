@@ -4,8 +4,6 @@ import { LIMIT_PER_PAGE } from "../const/const";
 
 export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
 
-//export const apiKeyOneApi = "b6e1nvsD0GNASWX-IMmV";
-//export const apiKeyOneApi = "uT6V40d3X9HaqHYEppBz";
 export const apiKeyOneApi = "CGtS8kroA8EQxHeMQzDh";
 
 export const getCharactersPerPage = async (search: string, page: number): Promise<ICharacter[]> => {
@@ -16,7 +14,6 @@ export const getCharactersPerPage = async (search: string, page: number): Promis
         },
     );
     const data: IResponse = response.data;
-    console.log(data);
     return data.docs;
 };
 

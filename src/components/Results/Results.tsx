@@ -26,7 +26,7 @@ const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError, offse
         );
     }
     return (
-        <div className={styles.results}>
+        <div className={styles.results} data-testid="testid-results">
             <CardList cardList={characters} offset={offset} />
         </div>
     );

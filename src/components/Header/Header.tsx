@@ -26,7 +26,11 @@ const Header: React.FC<HeaderProps> = ({ searchHandler }) => {
                     value={query}
                     placeholder="Поиск..."
                 />
-                <button className={styles.SearchBtn} onClick={onClickHandler}>
+                <button
+                    className={styles.SearchBtn}
+                    onClick={onClickHandler}
+                    data-testid="testid-searchBtn"
+                >
                     Поиск . . .
                 </button>
             </>
