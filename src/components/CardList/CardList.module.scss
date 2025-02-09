@@ -1,0 +1,20 @@
+.cardList {
+    display: flex;
+    flex-direction: row;
+}
+
+.cardList__container {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-right: 200px;
+}
+
+.cardList h3 {
+    color: black;
+}
