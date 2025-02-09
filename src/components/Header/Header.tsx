@@ -4,16 +4,16 @@ import styles from "./Header.module.scss";
 
 interface HeaderProps {
     searchHandler: (term: string) => void;
-    initialQuery: string;
+    //query: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ searchHandler, initialQuery }) => {
-    const [searchQuery, setSearchQuery] = useState<string>(initialQuery);
+const Header: React.FC<HeaderProps> = ({ searchHandler }) => {
+    const [query, setQuery] = useState("");
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
+        setQuery(e.target.value);
     };
     const onClickHandler = () => {
-        searchHandler(searchQuery);
+        searchHandler(query);
     };
 
     return (
@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ searchHandler, initialQuery }) => {
                     type="text"
                     className={styles.Search}
                     onChange={onChangeHandler}
-                    value={searchQuery}
+                    value={query}
                     placeholder="Поиск..."
                 />
                 <button className={styles.SearchBtn} onClick={onClickHandler}>

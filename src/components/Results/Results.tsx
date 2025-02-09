@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./Results.module.scss";
-import { ICharacter } from "../utils/types";
+import { ICharacter } from "../../utils/types";
 import CardList from "../CardList/CardList";
 import Loader from "../Loader/Loader";
 
@@ -8,9 +8,10 @@ interface ResultsProps {
     characters: Array<ICharacter>;
     isLoading: boolean;
     isError: boolean;
+    offset: number;
 }
 
-const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError }) => {
+const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError, offset }) => {
     if (isLoading) {
         return <Loader />;
     }
@@ -26,7 +27,7 @@ const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError }) => 
     }
     return (
         <div className={styles.results}>
-            <CardList cardList={characters} />
+            <CardList cardList={characters} offset={offset} />
         </div>
     );
 };
