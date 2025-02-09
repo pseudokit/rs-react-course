@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ICharacter, IResponse } from "./types";
-import { arr } from "./localData";
 import { LIMIT_PER_PAGE } from "../const/const";
 
 export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
@@ -27,7 +26,6 @@ export const getWithAxiosCharacters = async (search: string): Promise<ICharacter
     });
     const data: IResponse = response.data;
     return data.docs;
-    //return arr;
 };
 
 export const getCharacterById = async (id: string) => {
@@ -35,6 +33,5 @@ export const getCharacterById = async (id: string) => {
         headers: { Authorization: `Bearer ${apiKeyOneApi}` },
     });
     const data: IResponse = response.data;
-    //console.log(data);
     return data.docs;
 };

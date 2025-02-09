@@ -4,9 +4,9 @@ import "./App.css";
 import Results from "./components/Results/Results";
 
 import { ICharacter } from "./utils/types";
-import { getCharactersPerPage, getWithAxiosCharacters } from "./utils/api";
+import { getWithAxiosCharacters } from "./utils/api";
 import Pagination from "./components/Pagination/Pagination";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import { LIMIT_PER_PAGE } from "./const/const";
 
