@@ -1,4 +1,3 @@
-
 .cardInfo {
     width: 300px;
     color: black;
@@ -11,7 +10,7 @@
     padding: 10px;
 }
 
-.cardInfo h3{
+.cardInfo h3 {
     font-size: 16px;
     margin-right: 20px;
 }
@@ -33,9 +32,9 @@
     border-radius: 5px;
     padding: 10px 20px;
     transition: background-color 0.3s ease;
-  }
-  
-  .closeBtn:hover {
+}
+
+.closeBtn:hover {
     background-color: #ff4b4b;
     cursor: pointer;
-  }
+}

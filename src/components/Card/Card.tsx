@@ -17,8 +17,13 @@ const Card: React.FC<CardProps> = ({ card, handlerClickCard }) => {
         }
     };
     return (
-        <div className={styles.card} onClick={onCliCkHandler} data-id={card._id}>
-            <div>Name: {card.name} </div>
+        <div
+            className={styles.card}
+            onClick={onCliCkHandler}
+            data-id={card._id}
+            data-testid="testid-card"
+        >
+            <h2>Name: {card.name} </h2>
             <div>Birth: {card.birth}</div>
         </div>
     );

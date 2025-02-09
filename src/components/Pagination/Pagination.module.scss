@@ -4,9 +4,8 @@
     align-items: center;
     margin-bottom: 30px;
     margin-top: 20px;
-    
 }
-  
+
 .pagination button {
     width: 150px;
     height: 60px;
@@ -18,7 +17,9 @@
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 .pagination button:hover {
@@ -27,13 +28,13 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     color: #1b313f;
 }
-  
+
 .pagination button:disabled {
     background-color: white;
     cursor: not-allowed;
     color: rgb(224, 224, 221);
 }
-  
+
 .pagination span {
     font-size: 24px;
     margin: 0 10px;
