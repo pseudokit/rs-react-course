@@ -8,6 +8,7 @@ import { getWithAxiosCharacters } from "./utils/api";
 import Pagination from "./components/Pagination/Pagination";
 import Header from "./components/Header/Header";
 import { LIMIT_PER_PAGE } from "./const/const";
+import { useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
