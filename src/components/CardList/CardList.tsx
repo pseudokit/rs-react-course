@@ -38,7 +38,7 @@ const CardList: React.FC<CardListProps> = ({ cardList, offset }) => {
         <div className={styles.cardList} data-testid="testid-cardList">
             <div className={styles.cardList__container}>
                 {cardList.slice(offset, offset + LIMIT_PER_PAGE).map((component, index) => (
-                    <Card card={component} key={index} handlerClickCard={handlerClick} />
+                    <Card card={component} key={index} onClickCardHandler={handlerClick} />
                 ))}
             </div>
             {isOpened ? (
