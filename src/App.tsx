@@ -15,11 +15,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-/*
-<Routes>
-            <Route path="/*" element={<HomePage />}></Route>
-            <Route path="/details" element={<DetailsPage />} />
-            <Route path="/abc" element={<h1 style={{ color: `black` }}>abc</h1>}></Route>
-        </Routes>
-*/

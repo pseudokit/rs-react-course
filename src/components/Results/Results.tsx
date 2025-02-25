@@ -6,10 +6,9 @@ import Loader from "../Loader/Loader";
 interface ResultsProps {
     isLoading: boolean;
     isError: boolean;
-    offset: number;
 }
 
-const Results: React.FC<ResultsProps> = ({ isLoading, isError, offset }) => {
+const Results: React.FC<ResultsProps> = ({ isLoading, isError }) => {
     if (isLoading) {
         return <Loader />;
     }
@@ -25,7 +24,7 @@ const Results: React.FC<ResultsProps> = ({ isLoading, isError, offset }) => {
     }
     return (
         <div className={styles.results} data-testid="testid-results">
-            <CardList offset={offset} />
+            <CardList />
         </div>
     );
 };

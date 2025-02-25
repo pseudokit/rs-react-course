@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 
 import styles from "./Header.module.scss";
 import { useDispatch } from "react-redux";
-import { setQueryValue } from "../../store/uiStateSlice";
+import { setPageValue, setQueryValue } from "../../store/uiStateSlice";
 
 const Header: React.FC = () => {
     const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const Header: React.FC = () => {
     };
     const onClickHandler = async () => {
         dispatch(setQueryValue(query));
+        dispatch(setPageValue(1));
     };
 
     return (

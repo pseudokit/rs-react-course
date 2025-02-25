@@ -3,8 +3,9 @@ import { ICharacter, IResponse } from "./types";
 import { LIMIT_PER_PAGE } from "../const/const";
 
 export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
-
-export const apiKeyOneApi = "CGtS8kroA8EQxHeMQzDh";
+//export const apiKeyOneApi = "uT6V40d3X9HaqHYEppBz";
+//export const apiKeyOneApi = "CGtS8kroA8EQxHeMQzDh";
+export const apiKeyOneApi = "hReAN7zzuOHlwfKr-kEq ";
 
 export const getCharactersPerPage = async (search: string, page: number): Promise<ICharacter[]> => {
     const response = await axios.get(

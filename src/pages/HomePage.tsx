@@ -11,6 +11,7 @@ import Pagination from "../components/Pagination/Pagination.tsx";
 import Header from "../components/Header/Header.tsx";
 import { useGetCharactersQuery } from "../store/charactersApi.ts";
 import { setCurrentCharacters } from "../store/currentCharactersSlice.ts";
+import { setPageValue } from "../store/uiStateSlice.ts";
 
 export const HomePage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,13 +21,18 @@ export const HomePage: React.FC = () => {
     //const counter = useSelector((state: RootState) => state.selectedItems.value);
     const dispatch = useDispatch();
     const queryState = useSelector((state: RootState) => state.uiState.query);
+    const pageState = useSelector((state: RootState) => state.uiState.page);
 
-    const { data, isFetching, isError } = useGetCharactersQuery(queryState);
+    const {
+        data = { characters: [], pages: "0", page: "0", total: "0" },
+        isFetching,
+        isError,
+    } = useGetCharactersQuery({ searchQuery: queryState, page: pageState });
 
     useEffect(() => {
         if (data) {
-            dispatch(setCurrentCharacters(data));
-            setTotalPages(Math.ceil(data.length / LIMIT_PER_PAGE));
+            dispatch(setCurrentCharacters(data.characters));
+            setTotalPages(Math.ceil(data.characters.length / LIMIT_PER_PAGE));
         }
     }, [data, dispatch]);
 
@@ -43,18 +49,19 @@ export const HomePage: React.FC = () => {
 
     const onChangePageHandler = (currentPage: number) => {
         setCurrentPage(currentPage);
+        dispatch(setPageValue(currentPage));
     };
 
     return (
         <>
-            <h1 style={{ color: `black` }}>{data?.length} </h1>
+            <h1 style={{ color: `black` }}>{data?.characters?.length} </h1>
             <Pagination
-                currentPage={currentPage}
-                total={totalPages}
+                currentPage={parseInt(data.page)}
+                total={parseInt(data.pages)}
                 onChangePage={onChangePageHandler}
             />
             <Header />
-            <Results offset={offset} isLoading={isFetching} isError={isError} />
+            <Results isLoading={isFetching} isError={isError} />
         </>
     );
 };

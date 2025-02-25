@@ -2,18 +2,13 @@ import React, { useState } from "react";
 import "./CardList.module.scss";
 import styles from "./CardList.module.scss";
 import Card from "../Card/Card";
-import { LIMIT_PER_PAGE } from "../../const/const";
 import CardInfo from "../CardInfo/CardInfo";
 import { getCharacterById } from "../../utils/api";
 import { mockCharacterData } from "../../test/mockData";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
-interface CardListProps {
-    offset: number;
-}
-
-const CardList: React.FC<CardListProps> = ({ offset }) => {
+const CardList: React.FC = () => {
     const [isOpened, setIsOpened] = useState(false);
     const [currentCharacter, setCurrentCharacter] = useState(mockCharacterData);
     const [isLoading, setIsLoading] = useState(true);
@@ -42,11 +37,9 @@ const CardList: React.FC<CardListProps> = ({ offset }) => {
     return (
         <div className={styles.cardList} data-testid="testid-cardList">
             <div className={styles.cardList__container}>
-                {currentCharactersState
-                    .slice(offset, offset + LIMIT_PER_PAGE)
-                    .map((component, index) => (
-                        <Card card={component} key={index} onClickCardHandler={handlerClick} />
-                    ))}
+                {currentCharactersState.map((component, index) => (
+                    <Card card={component} key={index} onClickCardHandler={handlerClick} />
+                ))}
             </div>
             {isOpened ? (
                 isLoading ? (
