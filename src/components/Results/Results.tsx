@@ -5,13 +5,12 @@ import CardList from "../CardList/CardList";
 import Loader from "../Loader/Loader";
 
 interface ResultsProps {
-    characters: Array<ICharacter>;
     isLoading: boolean;
     isError: boolean;
     offset: number;
 }
 
-const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError, offset }) => {
+const Results: React.FC<ResultsProps> = ({ isLoading, isError, offset }) => {
     if (isLoading) {
         return <Loader />;
     }
@@ -27,7 +26,7 @@ const Results: React.FC<ResultsProps> = ({ characters, isLoading, isError, offse
     }
     return (
         <div className={styles.results} data-testid="testid-results">
-            <CardList cardList={characters} offset={offset} />
+            <CardList offset={offset} />
         </div>
     );
 };

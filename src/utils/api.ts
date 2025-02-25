@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ICharacter, IResponse } from "./types";
 import { LIMIT_PER_PAGE } from "../const/const";
-import { mockCharacterDataList } from "../test/mockData";
 
 export const baseUrlOneApi = `https://the-one-api.dev/v2/`;
 
@@ -18,16 +17,12 @@ export const getCharactersPerPage = async (search: string, page: number): Promis
     return data.docs;
 };
 
-/*export const getWithAxiosCharacters = async (search: string): Promise<ICharacter[]> => {
+export const getWithAxiosCharacters = async (search: string): Promise<ICharacter[]> => {
     const response = await axios.get(`${baseUrlOneApi}character?name=/${search}/i`, {
         headers: { Authorization: `Bearer ${apiKeyOneApi}` },
     });
     const data: IResponse = response.data;
     return data.docs;
-};*/
-export const getWithAxiosCharacters = async (search: string): Promise<ICharacter[]> => {
-    console.log(search);
-    return mockCharacterDataList;
 };
 
 export const getCharacterById = async (id: string) => {

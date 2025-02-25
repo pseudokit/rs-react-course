@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dataSlice from "../store/storeSlice";
+import selectItemsReducer from "./selectItemsSlice";
+import { charactersApi } from "../store/charactersApi";
+import uiStateReducer from "../store/uiStateSlice";
+import currentCharactersReducer from "../store/currentCharactersSlice";
 
 export const store = configureStore({
     reducer: {
-        data: dataSlice,
+        uiState: uiStateReducer,
+        selectedItems: selectItemsReducer,
+        currentCharacters: currentCharactersReducer,
+        [charactersApi.reducerPath]: charactersApi.reducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(charactersApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

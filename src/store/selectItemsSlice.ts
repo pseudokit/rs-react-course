@@ -12,7 +12,7 @@ const initialState: CounterState = {
 };
 
 const dataSlice = createSlice({
-    name: "character",
+    name: "charactersSlice",
     initialState,
     reducers: {
         selectItem: (state, action: PayloadAction<ICharacter>) => {
@@ -25,9 +25,6 @@ const dataSlice = createSlice({
                 return;
             }
             state.list.push(item);
-            console.log(state);
-            console.log(item);
-            console.log("i am here");
         },
         clearItems: (state) => {
             state.list = [];

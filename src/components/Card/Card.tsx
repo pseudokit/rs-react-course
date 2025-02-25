@@ -3,7 +3,7 @@ import styles from "./Card.module.scss";
 import { ICharacter } from "../../utils/types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { selectItem } from "../../store/storeSlice";
+import { selectItem } from "../../store/selectItemsSlice";
 
 interface CardProps {
     card: ICharacter;
@@ -12,7 +12,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ card, onClickCardHandler }) => {
     const dispatch = useDispatch();
-    const isChecked = useSelector((state: RootState) => state.data.list.includes(card));
+    const isChecked = useSelector((state: RootState) => state.selectedItems.list.includes(card));
 
     const checkboxClickHandler = (event: React.MouseEvent<HTMLInputElement>): void => {
         event.stopPropagation();

@@ -7,27 +7,34 @@ import { getWithAxiosCharacters } from "../utils/api";
 import { LIMIT_PER_PAGE } from "../const/const";
 import { useNavigate } from "react-router-dom";
 
-import { RootState, AppDispatch } from "../store/store.ts";
+import { RootState } from "../store/store.ts"; //AppDispatch
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../components/Pagination/Pagination.tsx";
 import Header from "../components/Header/Header.tsx";
-import { add } from "../store/storeSlice.ts";
-import { mockCharacterData } from "../test/mockData.ts";
+import { useGetCharactersQuery } from "../store/charactersApi.ts";
+import { setCurrentCharacters } from "../store/currentCharactersSlice.ts";
 
 export const HomePage: React.FC = () => {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [offset, setOffset] = useState(0);
 
-    const dispatch: AppDispatch = useDispatch();
-    const data = useSelector((state: RootState) => state.data);
+    //const counter = useSelector((state: RootState) => state.selectedItems.value);
+    const dispatch = useDispatch();
+    const queryState = useSelector((state: RootState) => state.uiState.query);
+
+    const { data, isFetching, isLoading, isError } = useGetCharactersQuery(queryState);
+
+    useEffect(() => {
+        if (data) {
+            dispatch(setCurrentCharacters(data));
+        }
+    }, [data, dispatch]);
 
     const navigate = useNavigate();
 
-    const apiCallQuery = async (query: string) => {
+    /*const apiCallQuery = async (query: string) => {
         setIsLoading(true);
         try {
             const dataJson = await getWithAxiosCharacters(query);
@@ -42,39 +49,32 @@ export const HomePage: React.FC = () => {
             setIsError(true);
         }
         setIsLoading(false);
-    };
+    };*/
 
     useEffect(() => {
         setCurrentPage(1);
-        navigate(`/?page=1`);
+        //navigate(`/?page=1`);
     }, [navigate, totalPages]);
 
     useEffect(() => {
         setOffset(LIMIT_PER_PAGE * (currentPage - 1));
-        navigate(`/?page=${currentPage}`);
+        //navigate(`/?page=${currentPage}`);
     }, [currentPage, navigate, offset]);
 
     const onChangePageHandler = (currentPage: number) => {
         setCurrentPage(currentPage);
     };
+
     return (
         <>
-            <div>
-                <h1 style={{ color: `black` }}>{data.value}</h1>
-                <button onClick={() => dispatch(add(mockCharacterData))}>Add reducer!</button>
-            </div>
+            <h1 style={{ color: `black` }}>{data?.length} </h1>
             <Pagination
                 currentPage={currentPage}
                 total={totalPages}
                 onChangePage={onChangePageHandler}
             />
-            <Header searchHandler={apiCallQuery} />
-            <Results
-                characters={characters}
-                offset={offset}
-                isLoading={isLoading}
-                isError={isError}
-            />
+            <Header />
+            <Results offset={offset} isLoading={isFetching} isError={isError} />
         </>
     );
 };
