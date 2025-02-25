@@ -1,6 +1,5 @@
 import * as React from "react";
 import styles from "./Results.module.scss";
-import { ICharacter } from "../../utils/types";
 import CardList from "../CardList/CardList";
 import Loader from "../Loader/Loader";
 

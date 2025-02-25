@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./CardList.module.scss";
-import { ICharacter } from "../../utils/types";
 import styles from "./CardList.module.scss";
 import Card from "../Card/Card";
 import { LIMIT_PER_PAGE } from "../../const/const";
