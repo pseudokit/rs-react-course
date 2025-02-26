@@ -54,7 +54,6 @@ export const HomePage: React.FC = () => {
 
     return (
         <>
-            <h1 style={{ color: `black` }}>{data?.characters?.length} </h1>
             <Pagination
                 currentPage={parseInt(data.page)}
                 total={parseInt(data.pages)}

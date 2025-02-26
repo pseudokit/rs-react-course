@@ -42,7 +42,20 @@ export const charactersApi = createApi({
                 return { characters, offset, pages, page, total };
             },
         }),
+        getCharacterById: builder.query<ICharacter, number | null>({
+            query: (id) => {
+                if (id === null) {
+                    return ``;
+                }
+                return `character/${id}`;
+            },
+            transformResponse: (response: IResponse) => {
+                const characters = response?.docs || [];
+                return characters[0];
+            },
+        }),
     }),
 });
 
-export const { useGetCharactersQuery } = charactersApi;
+export const { useGetCharactersQuery, useGetCharacterByIdQuery } = charactersApi;
+//`${baseUrlOneApi}character/${id}`

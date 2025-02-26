@@ -4,13 +4,12 @@ import { ICharacter } from "../../utils/types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { selectItem } from "../../store/selectItemsSlice";
-
+import { setDetailIdValue, setIsOpenedValue } from "../../store/uiStateSlice";
 interface CardProps {
     card: ICharacter;
-    onClickCardHandler: (id: string) => void;
 }
 
-const Card: React.FC<CardProps> = ({ card, onClickCardHandler }) => {
+const Card: React.FC<CardProps> = ({ card }) => {
     const dispatch = useDispatch();
     const isChecked = useSelector((state: RootState) => state.selectedItems.list.includes(card));
 
@@ -24,10 +23,11 @@ const Card: React.FC<CardProps> = ({ card, onClickCardHandler }) => {
     const onCliCkHandler = (event: MouseEvent<HTMLDivElement>) => {
         const card = event.currentTarget;
         const id = card.dataset.id;
-        console.log("Div id:", id);
+        console.log("id:", id);
         if (id) {
-            onClickCardHandler(id);
+            dispatch(setDetailIdValue(id));
         }
+        dispatch(setIsOpenedValue(true));
     };
     return (
         <div
