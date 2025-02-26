@@ -28,7 +28,6 @@ export const charactersApi = createApi({
             { searchQuery: string; page?: number }
         >({
             query: ({ searchQuery, page }) => {
-                //{ searchQuery: string, page: number }
                 const queryValue = searchQuery.trim();
                 const pageParam = page ? `&page=${page}` : "";
                 return `character?name=/${queryValue}/i&limit=${LIMIT_PER_PAGE}${pageParam}`;
@@ -58,4 +57,3 @@ export const charactersApi = createApi({
 });
 
 export const { useGetCharactersQuery, useGetCharacterByIdQuery } = charactersApi;
-//`${baseUrlOneApi}character/${id}`

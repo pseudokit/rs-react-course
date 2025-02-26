@@ -12,6 +12,7 @@ import Header from "../components/Header/Header.tsx";
 import { useGetCharactersQuery } from "../store/charactersApi.ts";
 import { setCurrentCharacters } from "../store/currentCharactersSlice.ts";
 import { setPageValue } from "../store/uiStateSlice.ts";
+import SelectedChareacters from "../components/SelectedCharacters/SelectedCharacters.tsx";
 
 export const HomePage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -54,12 +55,13 @@ export const HomePage: React.FC = () => {
 
     return (
         <>
+            <Header />
             <Pagination
                 currentPage={parseInt(data.page)}
                 total={parseInt(data.pages)}
                 onChangePage={onChangePageHandler}
             />
-            <Header />
+            <SelectedChareacters />
             <Results isLoading={isFetching} isError={isError} />
         </>
     );

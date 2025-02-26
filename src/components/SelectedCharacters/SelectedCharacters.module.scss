@@ -1,0 +1,43 @@
+.container {
+    align-items: center;
+    background: rgb(81, 182, 81);
+    color: #fff;
+    display: flex;
+    height: 80px;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 0 50px;
+    width: 1200px;
+    justify-content: space-between;
+    gap: 55px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    font-size: 24px;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.btnUnselect {
+    background-color: rgb(206, 81, 81);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btnDownload {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}

@@ -19,7 +19,6 @@ const dataSlice = createSlice({
             state.value += 1;
             const item = action.payload;
             const isSelected = state.list.find((card: ICharacter) => card._id === item._id);
-            console.log(isSelected);
             if (isSelected) {
                 state.list = state.list.filter((character) => character._id !== item._id);
                 return;
