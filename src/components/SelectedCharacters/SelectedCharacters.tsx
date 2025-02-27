@@ -4,54 +4,41 @@ import styles from "./SelectedCharacters.module.scss";
 import { RootState } from "../../store/store"; //AppDispat
 import { useSelector, useDispatch } from "react-redux";
 import { clearItems } from "../../store/selectItemsSlice";
-import { ICharacter } from "../../utils/types";
+import { createCharacterCSV } from "./createCSV";
 
 const SelectedChareacters: React.FC = () => {
     const dispatch = useDispatch();
-    const selectedItems = useSelector((state: RootState) => state.selectedItems);
-    if (selectedItems.list.length === 0) {
+    const selectedItemsList = useSelector((state: RootState) => state.selectedItems.list);
+    if (selectedItemsList.length === 0) {
         return "";
     }
     const unselectHandler = () => {
         dispatch(clearItems());
     };
-    const downloadHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(event.target);
-        const keys = Object.keys(selectedItems.list[0]) as (keyof ICharacter)[];
-        const csvRows = [
-            keys.join(","),
-            ...selectedItems.list.map((item: ICharacter) =>
-                keys.map((key) => item[key]).join(", "),
-            ),
-        ];
-        const csv = csvRows.join("\n");
 
-        const blob = new Blob([csv], { type: "text/csv" });
+    const downloadHandler = () => {
+        const csvContent = createCharacterCSV(selectedItemsList);
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${selectedItems.list.length}_characters.csv`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        dispatch(clearItems());
+
+        return url;
     };
 
     return (
         <div className={styles.container}>
             {" "}
-            {selectedItems.list.length} item&apos;s selected{" "}
+            {selectedItemsList.length} item&apos;s selected{" "}
             <div className={styles.btnContainer}>
                 <button className={styles.btnUnselect} onClick={() => unselectHandler()}>
                     Unselect all
                 </button>
-                <button
-                    className={styles.btnDownload}
-                    onClick={downloadHandler}
-                    data-testid="testid-download"
-                >
-                    Download
-                </button>
+
+                <a href={downloadHandler()} download={`${selectedItemsList.length}_characters.csv`}>
+                    <button className={styles.btnDownload} data-testid="testid-download">
+                        Download
+                    </button>
+                </a>
             </div>
         </div>
     );

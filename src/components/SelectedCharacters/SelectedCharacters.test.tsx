@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import selectItemsReducer, { clearItems } from "../../store/selectItemsSlice";
@@ -25,6 +25,10 @@ const mockStore = configureStore({
 });
 
 describe("SelectedCharacters component", () => {
+    beforeAll(() => {
+        window.URL.createObjectURL = vi.fn();
+    });
+
     it("render correct", () => {
         render(
             <Provider store={mockStore}>
