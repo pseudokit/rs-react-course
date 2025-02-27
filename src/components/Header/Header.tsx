@@ -38,7 +38,11 @@ const Header: React.FC = () => {
             >
                 Поиск . . .
             </button>
-            <button className={styles.SearchBtn} onClick={onClickThemeProdiver}>
+            <button
+                className={styles.SearchBtn}
+                onClick={onClickThemeProdiver}
+                data-testid="testid-themeBtn"
+            >
                 {theme === "light" ? "light" : "dark"}
             </button>
         </div>
