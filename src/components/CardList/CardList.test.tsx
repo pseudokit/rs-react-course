@@ -34,4 +34,31 @@ describe("CardList component", () => {
 
         expect(screen.getAllByTestId("testid-card")).toHaveLength(mockCharacterDataList.length);
     });
+    it("displays 'No data' message when currentCharactersState is empty", () => {
+        const emptyStore = configureStore({
+            reducer: {
+                uiState: uiStateReducer,
+                selectedItems: selectItemsReducer,
+                currentCharacters: currentCharactersReducer,
+                [charactersApi.reducerPath]: charactersApi.reducer,
+            },
+            middleware: (getDefaultMiddleware) =>
+                getDefaultMiddleware().concat(charactersApi.middleware),
+            preloadedState: {
+                uiState: { currentDetailId: null, isOpened: false, query: "", page: 1 },
+                selectedItems: { list: [], value: 0 },
+                currentCharacters: { currentCharacters: [] },
+            },
+        });
+
+        render(
+            <Provider store={emptyStore}>
+                <CardList />
+            </Provider>,
+        );
+
+        expect(screen.getByText("No data")).toBeInTheDocument();
+        expect(screen.getByText("Some went wrong...")).toBeInTheDocument();
+        expect(screen.queryByTestId("testid-cardList")).not.toBeInTheDocument();
+    });
 });

@@ -26,27 +26,17 @@ describe("Results Component", () => {
     it("Loader component renders correct", () => {
         render(
             <Provider store={mockStore}>
-                <Results isLoading={true} isError={false} />
+                <Results isLoading={true} />
             </Provider>,
         );
         const loader = screen.getByTestId("testid-loader");
         expect(loader).toBeInTheDocument();
     });
 
-    it("Error Page renders correct", () => {
-        render(
-            <Provider store={mockStore}>
-                <Results isLoading={false} isError={true} />
-            </Provider>,
-        );
-        const errorMessage = screen.getByText("Error page");
-        expect(errorMessage).toBeInTheDocument();
-    });
-
     it("CardList renders cards with correct length when no loading and no error", () => {
         render(
             <Provider store={mockStore}>
-                <Results isLoading={false} isError={false} />
+                <Results isLoading={false} />
             </Provider>,
         );
         const results = screen.getByTestId("testid-results");
