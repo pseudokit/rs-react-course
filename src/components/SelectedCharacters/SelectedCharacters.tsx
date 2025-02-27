@@ -25,7 +25,9 @@ const SelectedCharacters: React.FC = () => {
 
         return url;
     };
-
+    const dispatchAfterDownload = () => {
+        dispatch(clearItems());
+    };
     return (
         <div className={styles.container}>
             {" "}
@@ -39,7 +41,7 @@ const SelectedCharacters: React.FC = () => {
                     <button
                         className={styles.btnDownload}
                         data-testid="testid-download"
-                        onClick={() => dispatch(clearItems())}
+                        onClick={() => dispatchAfterDownload()}
                     >
                         Download
                     </button>
