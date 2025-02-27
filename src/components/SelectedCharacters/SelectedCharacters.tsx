@@ -1,14 +1,15 @@
 import React from "react";
 import styles from "./SelectedCharacters.module.scss";
 
-import { RootState } from "../../store/store"; //AppDispat
-import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
 import { clearItems } from "../../store/selectItemsSlice";
 import { createCharacterCSV } from "./createCSV";
 
-const SelectedChareacters: React.FC = () => {
+const SelectedCharacters: React.FC = () => {
     const dispatch = useDispatch();
     const selectedItemsList = useSelector((state: RootState) => state.selectedItems.list);
+
     if (selectedItemsList.length === 0) {
         return "";
     }
@@ -21,7 +22,7 @@ const SelectedChareacters: React.FC = () => {
 
         const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
         const url = URL.createObjectURL(blob);
-        dispatch(clearItems());
+
         return url;
     };
 
@@ -35,7 +36,11 @@ const SelectedChareacters: React.FC = () => {
                 </button>
 
                 <a href={downloadHandler()} download={`${selectedItemsList.length}_characters.csv`}>
-                    <button className={styles.btnDownload} data-testid="testid-download">
+                    <button
+                        className={styles.btnDownload}
+                        data-testid="testid-download"
+                        onClick={() => dispatch(clearItems())}
+                    >
                         Download
                     </button>
                 </a>
@@ -44,4 +49,4 @@ const SelectedChareacters: React.FC = () => {
     );
 };
 
-export default SelectedChareacters;
+export default SelectedCharacters;

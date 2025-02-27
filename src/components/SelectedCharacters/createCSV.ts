@@ -25,7 +25,7 @@ export const createCharacterCSV = (data: ICharacter[]): string => {
         csv.push(row);
     });
 
-    const values = [titles, ...csv].join("\r\n");
+    const values = csv.join("\r\n");
 
     return values;
 };

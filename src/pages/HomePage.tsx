@@ -8,8 +8,8 @@ import Header from "../components/Header/Header.tsx";
 import { useGetCharactersQuery } from "../store/charactersApi.ts";
 import { setCurrentCharacters } from "../store/currentCharactersSlice.ts";
 import { setPageValue } from "../store/uiStateSlice.ts";
-import SelectedChareacters from "../components/SelectedCharacters/SelectedCharacters.tsx";
 import { useTheme } from "../context/useTheme.tsx";
+import SelectedCharacters from "../components/SelectedCharacters/SelectedCharacters.tsx";
 
 export const HomePage: React.FC = () => {
     const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
                 total={parseInt(data.pages)}
                 onChangePage={onChangePageHandler}
             />
-            <SelectedChareacters />
+            <SelectedCharacters />
             <Results isLoading={isFetching} />
         </div>
     );
