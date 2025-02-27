@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 
 import styles from "./Header.module.scss";
 import { useDispatch } from "react-redux";
-import { setPageValue, setQueryValue } from "../../store/uiStateSlice";
+import { setIsOpenedValue, setPageValue, setQueryValue } from "../../store/uiStateSlice";
 import { useTheme } from "../../context/useTheme";
 
 const Header: React.FC = () => {
@@ -16,6 +16,7 @@ const Header: React.FC = () => {
     const onClickHandler = async () => {
         dispatch(setQueryValue(query));
         dispatch(setPageValue(1));
+        dispatch(setIsOpenedValue(false));
     };
     const onClickThemeProdiver = () => {
         toggleTheme();
