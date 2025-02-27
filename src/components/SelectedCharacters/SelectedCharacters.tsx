@@ -15,7 +15,8 @@ const SelectedChareacters: React.FC = () => {
     const unselectHandler = () => {
         dispatch(clearItems());
     };
-    const downloadHandler = () => {
+    const downloadHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(event.target);
         const keys = Object.keys(selectedItems.list[0]) as (keyof ICharacter)[];
         const csvRows = [
             keys.join(","),
@@ -44,7 +45,11 @@ const SelectedChareacters: React.FC = () => {
                 <button className={styles.btnUnselect} onClick={() => unselectHandler()}>
                     Unselect all
                 </button>
-                <button className={styles.btnDownload} onClick={() => downloadHandler()}>
+                <button
+                    className={styles.btnDownload}
+                    onClick={downloadHandler}
+                    data-testid="testid-download"
+                >
                     Download
                 </button>
             </div>
