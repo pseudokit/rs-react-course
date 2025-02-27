@@ -1,0 +1,59 @@
+.Header {
+    align-items: center;
+    background: inherit;
+    color: #fff;
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 50px;
+    width: 1200px;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.Search {
+    width: 300px;
+    height: 30px;
+    padding: 10px;
+    border: 2px solid #888282;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #090909;
+    transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+    background-color: #f0f0f0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.Search:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+.SearchBtn, ThemeBtn {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.SearchBtn:hover {
+    background-color: #45a049;
+}
+
+.SearchBtn:focus {
+    outline: none;
+    box-shadow: 0 0 10px #719ece;
+}
