@@ -23,7 +23,6 @@ const Card: React.FC<CardProps> = ({ card }) => {
     const onCliCkHandler = (event: MouseEvent<HTMLDivElement>) => {
         const card = event.currentTarget;
         const id = card.dataset.id;
-        console.log("id:", id);
         if (id) {
             dispatch(setDetailIdValue(id));
         }

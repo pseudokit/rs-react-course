@@ -28,18 +28,8 @@ export const HomePage: React.FC = () => {
     useEffect(() => {
         if (data) {
             dispatch(setCurrentCharacters(data.characters));
-            //setTotalPages(Math.ceil(data.characters.length / LIMIT_PER_PAGE));
         }
     }, [data, dispatch]);
-    /*
-    const navigate = useNavigate();
-    useEffect(() => {
-        //navigate(`/?page=1`);
-    }, [navigate, totalPages]);
-
-    useEffect(() => {
-        //navigate(`/?page=${currentPage}`);
-    }, [currentPage, navigate, offset]);*/
 
     const onChangePageHandler = (currentPage: number) => {
         dispatch(setPageValue(currentPage));

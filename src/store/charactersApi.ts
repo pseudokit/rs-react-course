@@ -41,7 +41,7 @@ export const charactersApi = createApi({
                 return { characters, offset, pages, page, total };
             },
         }),
-        getCharacterById: builder.query<ICharacter, number | null>({
+        getCharacterById: builder.query<ICharacter, string | null>({
             query: (id) => {
                 if (id === null) {
                     return ``;

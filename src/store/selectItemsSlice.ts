@@ -2,12 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICharacter } from "../utils/types";
 
 interface CounterState {
-    value: number;
     list: Array<ICharacter>;
 }
 
 const initialState: CounterState = {
-    value: 0,
     list: [],
 };
 
@@ -16,7 +14,6 @@ const dataSlice = createSlice({
     initialState,
     reducers: {
         selectItem: (state, action: PayloadAction<ICharacter>) => {
-            state.value += 1;
             const item = action.payload;
             const isSelected = state.list.find((card: ICharacter) => card._id === item._id);
             if (isSelected) {
